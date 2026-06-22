@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Curae — Events, with care</title>
+<meta name="description" content="Curae is a New York events studio. We sell, design, and produce events worth remembering." />
+
+<!-- Canonical & crawl -->
+<link rel="canonical" href="https://joincuraecollective.com/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#F4F0E8" />
+<meta name="author" content="Curae" />
+<meta name="publisher" content="Curae" />
+<meta name="keywords" content="events studio, New York events, event production, event design, private dinners, corporate events, brand events" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Curae" />
+<meta property="og:title" content="Curae — Events, with care" />
+<meta property="og:description" content="Curae is a New York events studio. We sell, design, and produce events worth remembering." />
+<meta property="og:url" content="https://joincuraecollective.com/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="og-image.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Curae — a New York events studio" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Curae — Events, with care" />
+<meta name="twitter:description" content="Curae is a New York events studio. We sell, design, and produce events worth remembering." />
+<meta name="twitter:image" content="og-image.png" />
+<meta name="twitter:image:alt" content="Curae — a New York events studio" />
+
+<!-- Icons -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+<!-- Fonts (loaded async so they never block first paint) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Inter:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Inter:wght@400;500&display=swap" /></noscript>
+<style>
+  :root{
+    --bg:#F4F0E8; --ink:#19170F; --muted:#6b6655; --faint:#cfc7b6; --line:#DCD4C4; --accent:#C2542E; --paper:#FBF9F3;
+    --maxw:1280px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+    --serif:"Fraunces",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  :focus:not(:focus-visible){outline:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .skip{position:fixed;top:8px;left:8px;z-index:100;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;font-size:14px;font-weight:500;transform:translateY(-150%);transition:transform .2s}
+  .skip:focus{transform:none}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .serif{font-family:var(--serif);font-weight:400}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* scroll progress bar */
+  #bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:100%;transform:scaleX(0);transform-origin:0 50%;z-index:60}
+
+  /* nav */
+  header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:24px 32px;transition:padding .3s,background .3s}
+  header.scrolled{padding:14px 32px;background:rgba(244,240,232,.82);backdrop-filter:blur(10px)}
+  .brand{font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:-.02em}
+  .brand .d{color:var(--accent)}
+  header .lk{font-size:13px;letter-spacing:.04em;position:relative}
+  header .lk::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:0;background:var(--accent);transition:width .3s}
+  header .lk:hover::after{width:100%}
+
+  /* hero */
+  .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 0}
+  .hero .eyebrow{opacity:0;animation:rise .9s .15s forwards}
+  .hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(54px,12vw,170px);line-height:.92;letter-spacing:-.045em;margin-top:24px}
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--accent)}
+  .hero h1 .ln{display:block;opacity:0;animation:rise 1s forwards}
+  .hero h1 .ln:nth-child(1){animation-delay:.25s}
+  .hero h1 .ln:nth-child(2){animation-delay:.42s}
+  .scrollcue{margin-top:auto;margin-bottom:34px;display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:0;animation:rise 1s .8s forwards}
+  .scrollcue .ln2{width:46px;height:1px;background:var(--muted);position:relative;overflow:hidden}
+  .scrollcue .ln2::after{content:"";position:absolute;inset:0;background:var(--accent);transform:translateX(-100%);animation:sweep 2.2s infinite}
+  @keyframes sweep{50%{transform:translateX(0)}100%{transform:translateX(100%)}}
+  @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+  /* fill-on-scroll statement */
+  .say{height:230vh;position:relative}
+  .say .pin{position:sticky;top:0;height:100svh;display:flex;align-items:center}
+  .say p{font-family:var(--serif);font-weight:400;font-size:clamp(30px,5.4vw,72px);line-height:1.12;letter-spacing:-.02em;max-width:18ch}
+  .say w{color:var(--faint);transition:color .25s;display:inline}
+  .say w.on{color:var(--ink)}
+  .say w.hl.on{color:var(--accent);font-style:italic}
+
+  /* flicker: what events */
+  .flick{height:340vh;position:relative}
+  .flick .pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .flick .q{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(22px,3.4vw,40px);color:var(--muted);margin-bottom:26px}
+  .flick .word{font-family:var(--serif);font-weight:400;font-size:clamp(44px,10vw,140px);line-height:1;letter-spacing:-.04em;min-height:1.05em}
+  .flick .word.cut{animation:cut .16s ease-out}
+  @keyframes cut{0%{opacity:.1;filter:blur(5px);transform:translateY(8px)}100%{opacity:1;filter:none;transform:none}}
+  .flick .meter{margin-top:14px;width:min(280px,60vw);height:2px;background:var(--line);position:relative}
+  .flick .meter i{position:absolute;inset:0 auto 0 0;background:var(--accent);width:0}
+
+  /* we do it all — build up */
+  .build{height:400vh;position:relative}
+  .build .pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:30px}
+  .build-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .build-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,7vw,92px);line-height:1;letter-spacing:-.03em}
+  .build-head p{color:var(--muted);font-size:clamp(15px,1.9vw,20px)}
+  .stack{display:flex;flex-direction:column-reverse;align-items:stretch;max-width:780px;width:100%}
+  .slab{height:0;opacity:0;overflow:hidden;display:flex;align-items:center;padding:0 28px;border-radius:14px;background:var(--paper);border:1px solid var(--line);transform:translateY(14px);transition:height .5s cubic-bezier(.2,.7,.2,1),opacity .45s,margin .5s,transform .5s}
+  .slab span{font-family:var(--serif);font-size:clamp(20px,2.7vw,34px);letter-spacing:-.02em}
+  .slab.on{height:clamp(48px,7.2vh,72px);opacity:1;transform:none;margin-top:10px}
+  .slab:last-child.on{margin-top:0}
+  .slab.top{background:var(--accent);border-color:var(--accent)}
+  .slab.top span{color:var(--paper)}
+
+  /* brands — logo grid */
+  .brands{padding:120px 0 40px}
+  .brands .eyebrow{margin-bottom:40px}
+  .logos{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .logos .logo{position:relative;background:var(--paper);height:clamp(108px,15vw,164px)}
+  .logos .logo .name{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.4vw,40px);letter-spacing:-.01em;color:var(--muted);opacity:1;transition:opacity .35s,color .35s}
+  .logos .logo .mark{position:absolute;inset:26px;margin:auto;max-height:54px;max-width:72%;object-fit:contain;opacity:0;transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
+  .logos .logo:hover .name{opacity:0}
+  .logos .logo:hover .mark{opacity:1;transform:scale(1.04)}
+  .logos .logo.nomark .mark{display:none}
+  .logos .logo.nomark:hover .name{opacity:1;color:var(--ink)}
+  .logos .logo.reveal{transform:none;opacity:0}
+  .logos .logo.reveal.in{opacity:1}
+  .logos .logo:nth-child(3n-1){transition-delay:.06s}
+  .logos .logo:nth-child(3n){transition-delay:.12s}
+  @media(max-width:680px){.logos .logo{height:clamp(82px,22vw,120px)} .logos .logo .name{font-size:clamp(15px,4.4vw,24px)} .logos .logo .mark{inset:16px;max-height:34px}}
+  @media(hover:none){.logos .logo .name{opacity:0} .logos .logo .mark{opacity:1}}
+
+  /* contact */
+  .contact{padding:130px 0 150px;text-align:center}
+  .contact .mail{display:inline-block;margin-top:22px;font-family:var(--serif);font-weight:300;font-size:clamp(32px,7vw,84px);letter-spacing:-.03em;transition:color .3s}
+  .contact .mail:hover{color:var(--accent)}
+
+  footer{border-top:1px solid var(--line)}
+  .foot{display:flex;justify-content:space-between;align-items:center;padding:26px 0;color:var(--muted);font-size:13px}
+  .foot .brand{font-size:16px;color:var(--ink)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:680px){
+    .wrap{padding:0 20px}
+    header{padding:18px 20px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    html{scroll-behavior:auto}
+    /* reveal-on-scroll: show everything */
+    .reveal{opacity:1!important;transform:none!important}
+    .logos .logo.reveal{opacity:1!important}
+    /* statement fill: ink all words, keep the highlight */
+    .say w{color:var(--ink)!important}
+    .say w.hl{color:var(--accent)!important;font-style:italic}
+    /* un-pin the long sticky scroll-scrub sections so content isn't gated on scroll */
+    .say,.flick,.build{height:auto!important}
+    .say .pin,.flick .pin,.build .pin{position:static!important;height:auto!important;padding:80px 0!important}
+    /* build-up slabs: force every slab open and visible */
+    .slab{height:auto!important;min-height:clamp(48px,7.2vh,72px);opacity:1!important;transform:none!important;margin-top:10px!important;overflow:visible!important}
+    /* hero entrance: no opacity:0 holdover from the rise animation */
+    .hero .eyebrow,.hero h1 .ln,.scrollcue{opacity:1!important;transform:none!important}
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://joincuraecollective.com/#organization",
+  "name": "Curae",
+  "description": "Curae is a New York events studio. We sell, design, and produce events worth remembering.",
+  "url": "https://joincuraecollective.com/",
+  "email": "info@joincuraecollective.com",
+  "image": "https://joincuraecollective.com/og-image.png",
+  "logo": "https://joincuraecollective.com/apple-touch-icon.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "addressCountry": "US"
+  },
+  "areaServed": { "@type": "City", "name": "New York" },
+  "knowsAbout": ["Event production", "Event design", "Private dinners", "Corporate events", "Brand activations"]
+}
+</script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<div id="bar" aria-hidden="true"></div>
+
+<header id="hdr">
+  <a href="#top" class="brand" aria-label="Curae, back to top">Curae<span class="d" aria-hidden="true">.</span></a>
+  <nav aria-label="Primary">
+    <a class="lk" href="#contact">Get in touch</a>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap" style="display:flex;flex-direction:column;flex:1;justify-content:center">
+      <p class="eyebrow">Events studio — New York</p>
+      <h1><span class="ln">Events,</span><span class="ln">with <em>care.</em></span></h1>
+    </div>
+    <div class="wrap" aria-hidden="true"><div class="scrollcue"><span>Scroll</span><span class="ln2"></span></div></div>
+  </section>
+
+  <!-- STATEMENT: fill on scroll -->
+  <section class="say" id="say">
+    <div class="pin"><div class="wrap"><p id="sayText"></p></div></div>
+  </section>
+
+  <!-- FLICKER: what events -->
+  <section class="flick" id="flick">
+    <div class="pin">
+      <p class="q">What events do we do?</p>
+      <div class="word serif" id="flickWord" aria-hidden="true">Private dinners</div>
+      <p class="sr-only">From private dinners and brand launches to galas, conferences, pop-ups, and anything worth gathering for.</p>
+      <div class="meter" aria-hidden="true"><i id="flickMeter"></i></div>
+    </div>
+  </section>
+
+  <!-- WE DO IT ALL — build from the bottom up -->
+  <section class="build" id="build">
+    <div class="pin">
+      <div class="wrap build-head">
+        <h2 class="serif">We do it all.</h2>
+        <p>We plan from the bottom up.</p>
+      </div>
+      <div class="wrap">
+        <div class="stack" id="stack">
+          <div class="slab"><span>Venue</span></div>
+          <div class="slab"><span>Logistics</span></div>
+          <div class="slab"><span>Production</span></div>
+          <div class="slab"><span>Food &amp; drink</span></div>
+          <div class="slab"><span>Design</span></div>
+          <div class="slab"><span>Programming</span></div>
+          <div class="slab"><span>Guest experience</span></div>
+          <div class="slab top"><span>The night.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS -->
+  <section class="brands" id="brands">
+    <div class="wrap">
+      <p class="eyebrow reveal">We work with</p>
+      <div class="logos">
+        <div class="logo reveal"><img class="mark" src="logos/snapchat.png" alt="Snapchat" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">Snapchat</span></div>
+        <div class="logo reveal"><img class="mark" src="logos/google.png" alt="Google" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">Google</span></div>
+        <div class="logo reveal"><img class="mark" src="logos/youtube.png" alt="YouTube" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">YouTube</span></div>
+        <div class="logo reveal"><img class="mark" src="logos/meta.png" alt="Meta" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">Meta</span></div>
+        <div class="logo reveal"><img class="mark" src="logos/vogue.png" alt="Vogue" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">Vogue</span></div>
+        <div class="logo reveal"><img class="mark" src="logos/caa.png" alt="Creative Artists Agency" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">CAA</span></div>
+        <div class="logo reveal"><img class="mark" src="logos/spotify.webp" alt="Spotify" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">Spotify</span></div>
+        <div class="logo reveal"><img class="mark" src="logos/nyt.png" alt="The New York Times" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">NYT</span></div>
+        <div class="logo reveal"><img class="mark" src="logos/ebay.svg" alt="eBay" width="160" height="54" loading="lazy" decoding="async" onerror="this.closest('.logo').classList.add('nomark')"><span class="name">eBay</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal">Let's talk</p>
+      <a class="mail serif reveal" href="mailto:info@joincuraecollective.com">info@joincuraecollective.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand">Curae<span class="d" style="color:var(--accent)">.</span></span>
+    <span>New York</span>
+    <span id="yr"></span>
+  </div>
+</footer>
+
+<script>
+  const $ = (s)=>document.querySelector(s);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('yr').textContent = '© ' + new Date().getFullYear();
+
+  // build fill-on-scroll statement
+  const SAY = "We sell, design, and produce events worth remembering.";
+  const HL = ["remembering."];
+  const sayText = $('#sayText');
+  sayText.innerHTML = SAY.split(' ').map(w => `<w class="${HL.includes(w)?'hl':''}">${w} </w>`).join('');
+  const sayWords = [...sayText.querySelectorAll('w')];
+
+  // flicker events
+  const EVENTS = ["Private dinners","Brand launches","Product activations","Galas & benefits","Members' nights",
+    "Corporate offsites","Conferences","Pop-ups","Fashion presentations","Holiday parties","Fundraisers",
+    "Panels & talks","Listening parties","Supper clubs","Press previews","Cocktail receptions","Investor summits",
+    "Wrap parties","Anniversaries","Anything worth gathering for."];
+  const flickWord=$('#flickWord'), flickMeter=$('#flickMeter');
+  let lastIdx=-1;
+
+  const say=$('#say'), flick=$('#flick'), build=$('#build'), bar=$('#bar'), hdr=$('#hdr');
+  const slabs=[...document.querySelectorAll('#stack .slab')];
+
+  const prog = (el)=>{ const r=el.getBoundingClientRect(); const h=el.offsetHeight-innerHeight; return clamp(-r.top/(h||1),0,1); };
+
+  function frame(){
+    const y=scrollY;
+    // --- reads ---
+    const docH=document.documentElement.scrollHeight-innerHeight;
+    const sp = REDUCE?0:prog(say), fp = REDUCE?0:prog(flick), bp = REDUCE?0:prog(build);
+    // --- writes ---
+    bar.style.transform='scaleX('+clamp(y/(docH||1),0,1)+')';
+    hdr.classList.toggle('scrolled', y>20);
+    if(!REDUCE){
+      // statement fill
+      const on=Math.round(sp*sayWords.length);
+      sayWords.forEach((w,i)=>w.classList.toggle('on', i<on));
+      // flicker
+      const idx=clamp(Math.floor(fp*EVENTS.length),0,EVENTS.length-1);
+      flickMeter.style.width=(fp*100)+'%';
+      if(idx!==lastIdx){ lastIdx=idx; flickWord.textContent=EVENTS[idx];
+        flickWord.classList.remove('cut'); void flickWord.offsetWidth; flickWord.classList.add('cut'); }
+      // build from the bottom up
+      const vis=Math.round(clamp(bp/0.6,0,1)*slabs.length);
+      slabs.forEach((s,i)=>s.classList.toggle('on', i<vis));
+    }
+    ticking=false;
+  }
+  let ticking=false;
+  const onScroll=()=>{ if(!ticking){ ticking=true; requestAnimationFrame(frame); } };
+  if(!REDUCE){ addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll); }
+  frame();
+
+  // reveals
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
