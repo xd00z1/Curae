@@ -142,8 +142,10 @@
 
   /* contact */
   .contact{padding:130px 0 150px;text-align:center}
-  .contact .mail{display:inline-block;margin-top:22px;font-family:var(--serif);font-weight:300;font-size:clamp(22px,3.6vw,44px);letter-spacing:-.03em;transition:color .3s}
-  .contact .mail:hover{color:var(--accent)}
+  .contact .mail{display:inline-block;margin-top:22px;font-family:var(--serif);font-weight:300;font-size:clamp(22px,3.6vw,44px);letter-spacing:-.03em;cursor:pointer;border-bottom:2px solid var(--line);transition:color .3s,border-color .3s}
+  .contact .mail:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .contact .mail.copied{color:var(--accent);border-bottom-color:var(--accent)}
+  .contact .mail-hint{display:block;margin-top:16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .3s}
 
   footer{border-top:1px solid var(--line)}
   .foot{display:flex;justify-content:space-between;align-items:center;padding:26px 0;color:var(--muted);font-size:13px}
@@ -276,7 +278,8 @@
   <section class="contact" id="contact">
     <div class="wrap">
       <p class="eyebrow reveal">Let's talk</p>
-      <a class="mail serif reveal" href="mailto:info@joincuraecollective.com">info@joincuraecollective.com</a>
+      <a class="mail serif reveal" id="mail" href="mailto:info@joincuraecollective.com">info@joincuraecollective.com</a>
+      <span class="mail-hint reveal" id="mailhint">Click to email us</span>
     </div>
   </section>
 </main>
@@ -303,7 +306,7 @@
   const sayWords = [...sayText.querySelectorAll('w')];
 
   // flicker events
-  const EVENTS = ["Private dinners","Brand launches","Product activations","Galas & benefits","Members' nights",
+  const EVENTS = ["Private dinners","Brand launches","Product activations","Galas & benefits",
     "Corporate offsites","Conferences","Pop-ups","Fashion presentations","Holiday parties","Fundraisers",
     "Panels & talks","Listening parties","Supper clubs","Press previews","Cocktail receptions","Investor summits",
     "Wrap parties","Anniversaries","Anything worth gathering for."];
@@ -346,6 +349,18 @@
   // reveals
   const io=new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.18});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // contact email: mailto still opens the mail app, AND we copy the address with feedback so a click always does something
+  (function(){
+    const m=document.getElementById('mail'), h=document.getElementById('mailhint');
+    if(!m) return;
+    m.addEventListener('click',()=>{
+      try{ if(navigator.clipboard) navigator.clipboard.writeText('info@joincuraecollective.com'); }catch(e){}
+      m.classList.add('copied');
+      if(h) h.textContent='Email copied ✓';
+      clearTimeout(m._t); m._t=setTimeout(()=>{ m.classList.remove('copied'); if(h) h.textContent='Click to email us'; },2200);
+    });
+  })();
 </script>
 </body>
 </html>
