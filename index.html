@@ -140,6 +140,20 @@
   @media(max-width:680px){.logos .logo{height:clamp(82px,22vw,120px)} .logos .logo .name{font-size:clamp(12px,3.6vw,18px)} .logos .logo .mark{inset:16px;max-height:34px}}
   @media(hover:none){.logos .logo .name{opacity:0} .logos .logo .mark{opacity:1}}
 
+  /* services — the commercial side */
+  .svc{padding:120px 0 40px}
+  .svc .eyebrow{margin-bottom:16px}
+  .svc h2{font-family:var(--serif);font-weight:300;font-size:clamp(26px,4.4vw,56px);line-height:1;letter-spacing:-.03em;margin-bottom:18px}
+  .svc .lede{color:var(--muted);font-size:clamp(15px,1.7vw,20px);line-height:1.5;max-width:46ch;margin-bottom:52px}
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .svc-item{background:var(--paper);padding:clamp(28px,3.4vw,46px)}
+  .svc-item.reveal{transform:none}
+  .svc-item.reveal:nth-child(3),.svc-item.reveal:nth-child(4){transition-delay:.08s}
+  .svc-item .n{font-size:12px;letter-spacing:.2em;color:var(--faint);display:block;margin-bottom:14px}
+  .svc-item h3{font-family:var(--serif);font-weight:400;font-size:clamp(19px,2.2vw,28px);letter-spacing:-.02em;margin-bottom:12px}
+  .svc-item p{color:var(--muted);font-size:clamp(14px,1.4vw,16px);line-height:1.55}
+  @media(max-width:680px){.svc-grid{grid-template-columns:1fr}}
+
   /* contact */
   .contact{padding:130px 0 150px;text-align:center}
   .contact .mail{display:inline-block;margin-top:22px;font-family:var(--serif);font-weight:300;font-size:clamp(22px,3.6vw,44px);letter-spacing:-.03em;cursor:pointer;border-bottom:2px solid var(--line);transition:color .3s,border-color .3s}
@@ -204,7 +218,8 @@
 
 <header id="hdr">
   <a href="#top" class="brand" aria-label="Curae, back to top">Curae<span class="d" aria-hidden="true">.</span></a>
-  <nav aria-label="Primary">
+  <nav aria-label="Primary" style="display:flex;gap:28px;align-items:center">
+    <a class="lk" href="#services">Services</a>
     <a class="lk" href="#contact">Get in touch</a>
   </nav>
 </header>
@@ -252,6 +267,21 @@
           <div class="slab"><span>Guest experience</span></div>
           <div class="slab top"><span>The night.</span></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES — the commercial side -->
+  <section class="svc" id="services">
+    <div class="wrap">
+      <p class="eyebrow reveal">More than the night</p>
+      <h2 class="serif reveal">We run the commercial side, too.</h2>
+      <p class="lede reveal">Producing the event is only half of it. For the venues we partner with, Curae runs the commercial engine behind the room: the sales, growth, strategy, and marketing that keep the calendar full.</p>
+      <div class="svc-grid">
+        <div class="svc-item reveal"><span class="n">01</span><h3>Commercial Sales Management</h3><p>We run the full inbound sales function, from first inquiry to signed contract.</p></div>
+        <div class="svc-item reveal"><span class="n">02</span><h3>Business Development &amp; Lead Generation</h3><p>Outbound and partnerships that build a steady pipeline of the right clients.</p></div>
+        <div class="svc-item reveal"><span class="n">03</span><h3>Revenue Strategy &amp; Advisory</h3><p>Pricing, packaging, and forecasting to get the most out of every date.</p></div>
+        <div class="svc-item reveal"><span class="n">04</span><h3>Marketing &amp; Brand Partnerships</h3><p>Positioning, campaigns, and collaborations that put the space on the map.</p></div>
       </div>
     </div>
   </section>
